@@ -358,9 +358,9 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-full h-6 bg-yellow-400"></div>
         <div className="max-w-[1400px] mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-center items-center gap-10 mb-16">
-            <img src="/fulshear-logo.png" className="h-24 filter brightness-0 invert" />
+            <img src="/fulshear-logo.png" className="h-24 w-auto object-contain filter-torn bg-white p-2 transform -rotate-3 shadow-md" />
             <span className="font-marker text-4xl md:text-5xl text-yellow-400 tracking-wider">Fulshear High School DECA</span>
-            <img src="/deca-logo.png" className="h-16 filter brightness-0 invert" />
+            <img src="/deca-logo.png" className="h-20 w-auto object-contain filter-torn bg-white p-2 transform rotate-2 shadow-md" />
           </div>
           <div className="flex justify-center gap-12 mb-16 font-bold font-sans text-xl md:text-2xl tracking-widest uppercase">
             <a href="https://www.instagram.com/fulsheardeca/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 hover:underline underline-offset-4">Instagram</a>
