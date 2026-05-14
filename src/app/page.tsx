@@ -23,12 +23,12 @@ const TornEdgeSVG = () => (
   </svg>
 );
 
-const CutoutLetter = ({ char, rot, bg, textCol, delay }: { char: string, rot: number, bg: string, textCol: string, delay: number }) => (
+const CutoutLetter = ({ char, rot, bg, textCol, delay, yOffset = 0 }: { char: string, rot: number, bg: string, textCol: string, delay: number, yOffset?: number }) => (
   <motion.div 
-    initial={{ scale: 0, rotateZ: -180, opacity: 0 }}
-    animate={{ scale: 1, rotateZ: rot, opacity: 1 }}
+    initial={{ scale: 0, rotateZ: -180, opacity: 0, y: 50 }}
+    animate={{ scale: 1, rotateZ: rot, opacity: 1, y: yOffset }}
     transition={{ type: "spring", stiffness: 200, damping: 15, delay: delay }}
-    whileHover={{ scale: 1.2, rotateZ: 0, zIndex: 50 }}
+    whileHover={{ scale: 1.2, rotateZ: 0, zIndex: 50, y: 0 }}
     className={`inline-block flex-shrink-0 ${bg} ${textCol} font-marker filter-torn text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl px-3 py-2 md:px-4 md:py-2 mx-0.5 md:mx-1 shadow-[4px_4px_0px_rgba(0,0,0,0.1)] cursor-pointer`}
   >
     {char}
@@ -111,39 +111,56 @@ export default function Home() {
         <motion.div style={{ y: doodle2Y, rotateZ: doodle2Rotate }} className="absolute bottom-40 left-10 text-pink-300 opacity-60 font-gochi text-5xl text-center select-none z-0">Business<br/>Leaders</motion.div>
         
         <motion.div 
-          style={{ y: heroY, rotateX: heroRotateX, opacity: heroOpacity }}
-          className="relative max-w-5xl mx-auto w-full paper-card p-8 md:p-16 rotate-1 mt-10 bg-white z-10 shadow-[10px_10px_30px_rgba(0,0,0,0.1)] border-2 border-slate-200"
+          style={{ y: heroY, rotateX: heroRotateX, opacity: heroOpacity, transformStyle: "preserve-3d" }}
+          className="relative max-w-5xl mx-auto w-full paper-card px-8 py-16 md:p-16 rotate-1 mt-10 bg-white z-10 shadow-[10px_10px_30px_rgba(0,0,0,0.1)] border-2 border-slate-200 bg-[linear-gradient(transparent_95%,#f1f5f9_95%)] bg-[length:100%_2rem]"
         >
+          {/* Red margin line for notebook paper effect */}
+          <div className="absolute top-0 bottom-0 left-10 md:left-16 w-0.5 bg-red-300 opacity-60 z-0"></div>
+          
+          {/* Scribbled stars and arrows */}
+          <div className="absolute top-20 left-20 md:left-32 text-yellow-400 opacity-80 font-marker text-6xl -rotate-12 pointer-events-none z-0">*</div>
+          <div className="absolute top-40 right-20 md:right-32 text-blue-400 opacity-80 font-marker text-5xl rotate-12 pointer-events-none z-0">✧</div>
+          
           <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-blue" />
           <div className="washi-tape top-[-15px] right-10 rotate-[10deg] washi-yellow" />
           <div className="washi-tape bottom-[-15px] left-10 -rotate-[15deg] washi-pink" />
           
-          <div className="text-center relative z-10">
-            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="inline-block mb-8 px-6 py-2 border-4 border-dashed border-blue-400 bg-blue-50 text-blue-800 font-marker text-2xl -rotate-2 shadow-sm hover:rotate-0 transition-transform">
+          <div className="text-center relative z-10 mt-8">
+            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, type: "spring" }} className="inline-block mb-12 px-6 py-3 bg-yellow-200 text-slate-800 font-gochi text-3xl -rotate-3 shadow-md hover:rotate-2 transition-transform filter-torn border border-yellow-300 relative">
+              <span className="absolute -top-3 -left-3 text-red-500 text-4xl rotate-12">📌</span>
               Chapter 2025-2026
             </motion.div>
             
-            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-4" style={{ perspective: "1000px" }}>
+            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-6 relative" style={{ perspective: "1000px" }}>
+               {/* Decorative underline */}
+               <svg className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 max-w-md h-8 text-blue-500 opacity-60 z-0" viewBox="0 0 400 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M 10 20 Q 100 40, 200 20 T 390 20" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeDasharray="5,5" />
+               </svg>
                {["F","U","L","S","H","E","A","R"].map((char, i) => (
-                 <CutoutLetter key={i} char={char} rot={Math.floor(Math.random()*8)-4} bg="bg-blue-600" textCol="text-white" delay={0.1 * i} />
+                 <CutoutLetter key={i} char={char} rot={Math.floor(Math.random()*8)-4} bg="bg-blue-600" textCol="text-white" delay={0.1 * i} yOffset={Math.random() * 10 - 5} />
                ))}
             </div>
 
-            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-10" style={{ perspective: "1000px" }}>
+            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-12 relative" style={{ perspective: "1000px" }}>
                {["D","E","C","A"].map((char, i) => (
-                 <CutoutLetter key={i} char={char} rot={Math.floor(Math.random()*8)-4} bg="bg-yellow-400" textCol="text-slate-900" delay={0.8 + (0.1 * i)} />
+                 <CutoutLetter key={i} char={char} rot={Math.floor(Math.random()*8)-4} bg="bg-yellow-400" textCol="text-slate-900" delay={0.8 + (0.1 * i)} yOffset={Math.random() * 10 - 5} />
                ))}
+               {/* Arrow pointing to text */}
+               <svg className="absolute -right-8 -bottom-16 w-20 h-20 text-pink-500 hidden md:block" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                 <path d="M 5 5 Q 20 5, 20 15 M 15 10 L 20 15 L 15 20" />
+               </svg>
             </div>
             
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.5, type: "spring" }} className="inline-block mt-4 mb-10 bg-pink-100 px-8 py-4 transform rotate-2 shadow-sm filter-torn border border-pink-200 hover:scale-110 transition-transform">
-              <span className="font-gochi text-4xl md:text-5xl text-pink-700">&quot;Future Leaders in Marketing &amp; Finance&quot;</span>
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.5, type: "spring" }} className="inline-block relative z-20 mt-4 mb-14 bg-pink-100 px-8 py-5 transform rotate-2 shadow-sm filter-torn border border-pink-200 hover:scale-105 transition-transform">
+              <div className="washi-tape top-[-10px] left-4 scale-75 washi-blue" />
+              <span className="font-gochi text-4xl md:text-5xl text-pink-700 font-bold">&quot;Future Leaders in Marketing &amp; Finance&quot;</span>
             </motion.div>
             
-            <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8 }} className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a href="#join" className="px-10 py-5 bg-deca-navy text-white font-marker text-2xl md:text-3xl shadow-[8px_8px_0px_#d4af37] hover:translate-y-1 hover:shadow-[3px_3px_0px_#d4af37] transition-all flex items-center justify-center gap-2 group transform -rotate-1 border-4 border-deca-navy">
+            <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8 }} className="flex flex-col sm:flex-row gap-6 justify-center mt-4">
+              <a href="#join" className="px-10 py-5 bg-deca-navy text-white font-marker text-2xl md:text-3xl shadow-[8px_8px_0px_#d4af37] hover:translate-y-1 hover:shadow-[3px_3px_0px_#d4af37] transition-all flex items-center justify-center gap-2 group transform -rotate-2 border-4 border-deca-navy relative">
                 Join DECA <ArrowRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#competitions" className="px-10 py-5 bg-white border-4 border-slate-800 text-slate-800 font-marker text-2xl md:text-3xl shadow-[8px_8px_0px_#cbd5e1] hover:translate-y-1 hover:shadow-[3px_3px_0px_#cbd5e1] transition-all flex items-center justify-center transform rotate-1">
+              <a href="#competitions" className="px-10 py-5 bg-white border-4 border-slate-800 text-slate-800 font-marker text-2xl md:text-3xl shadow-[8px_8px_0px_#cbd5e1] hover:translate-y-1 hover:shadow-[3px_3px_0px_#cbd5e1] transition-all flex items-center justify-center transform rotate-2 relative">
                 Explore Events!
               </a>
             </motion.div>
