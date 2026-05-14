@@ -134,6 +134,17 @@ export default function Home() {
            <img src="/gallery-5.jpg" className="w-full filter-torn-light" />
         </motion.div>
 
+        {/* Floating Logos Layer */}
+        <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, 250]) }} className="absolute top-[12%] right-[5%] md:right-[18%] rotate-[-12deg] w-32 md:w-48 sticker bg-white p-2 shadow-[10px_10px_0px_rgba(0,0,0,0.5)] z-10 border-4 border-slate-200 pointer-events-none hidden sm:block">
+           <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-pink" />
+           <img src="/fulshear-logo.png" className="w-full h-auto object-contain filter-torn-light" />
+        </motion.div>
+
+        <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, -150]) }} className="absolute bottom-[35%] left-[2%] md:left-[10%] rotate-[18deg] w-40 md:w-64 sticker bg-white p-2 shadow-[10px_10px_0px_rgba(0,0,0,0.5)] z-10 border-4 border-slate-200 pointer-events-none hidden sm:block">
+           <div className="washi-tape top-[-15px] right-8 washi-blue" />
+           <img src="/deca-logo.png" className="w-full h-auto object-contain filter-torn-light" />
+        </motion.div>
+
         {/* Central Exploding Typography */}
         <div className="relative z-20 flex flex-col items-center justify-center w-full px-4 pointer-events-none mt-20 md:mt-0">
             
