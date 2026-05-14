@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdfbf7;
+  --foreground: #2d3748;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-deca-navy: #1a365d;
+  --color-deca-navy-light: #2b6cb0;
+  --color-deca-navy-dark: #0f2040;
+  --color-deca-gold: #d4af37;
+  --color-deca-gold-light: #f4ce5d;
+  --color-paper: #f4f1ea;
+  --color-paper-dark: #e8e4d9;
+  
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-playfair);
+  --font-handwriting: var(--font-caveat);
+  --font-marker: var(--font-marker);
+  --font-gochi: var(--font-gochi);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--color-paper);
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px),
+    url("https://www.transparenttextures.com/patterns/notebook.png");
+  background-size: 40px 40px, 40px 40px, auto;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), serif;
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting), cursive;
+}
+
+.font-marker {
+  font-family: var(--font-marker), cursive;
+}
+
+.font-gochi {
+  font-family: var(--font-gochi), cursive;
+}
+
+/* 100/10 Scrapbook effects */
+.paper-cutout {
+  background-color: #ffffff;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.1), -1px -1px 0px rgba(255,255,255,1);
+  border: 1px solid #d1d5db;
+  filter: drop-shadow(4px 4px 6px rgba(0,0,0,0.1));
+}
+
+.sticker {
+  border: 10px solid white;
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.15), inset 0px 0px 5px rgba(0,0,0,0.05);
+  border-radius: 2px;
+  background: white;
+}
+
+/* Washi Tape Effect */
+.washi-tape {
+  position: absolute;
+  width: 120px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  backdrop-filter: blur(2px) contrast(1.1);
+  transform: rotate(-3deg);
+  z-index: 10;
+  opacity: 0.85;
+  /* subtle texture */
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.2) 10px, rgba(255,255,255,0.2) 20px);
+  /* Jagged edges */
+  clip-path: polygon(0% 5%, 2% 0%, 4% 8%, 6% 2%, 8% 10%, 10% 0%, 12% 8%, 14% 2%, 16% 10%, 18% 0%, 20% 8%, 22% 2%, 24% 10%, 26% 0%, 28% 8%, 30% 2%, 32% 10%, 34% 0%, 36% 8%, 38% 2%, 40% 10%, 42% 0%, 44% 8%, 46% 2%, 48% 10%, 50% 0%, 52% 8%, 54% 2%, 56% 10%, 58% 0%, 60% 8%, 62% 2%, 64% 10%, 66% 0%, 68% 8%, 70% 2%, 72% 10%, 74% 0%, 76% 8%, 78% 2%, 80% 10%, 82% 0%, 84% 8%, 86% 2%, 88% 10%, 90% 0%, 92% 8%, 94% 2%, 96% 10%, 98% 0%, 100% 5%, 100% 95%, 98% 100%, 96% 92%, 94% 98%, 92% 90%, 90% 100%, 88% 92%, 86% 98%, 84% 90%, 82% 100%, 80% 92%, 78% 98%, 76% 90%, 74% 100%, 72% 92%, 70% 98%, 68% 90%, 66% 100%, 64% 92%, 62% 98%, 60% 90%, 58% 100%, 56% 92%, 54% 98%, 52% 90%, 50% 100%, 48% 92%, 46% 98%, 44% 90%, 42% 100%, 40% 92%, 38% 98%, 36% 90%, 34% 100%, 32% 92%, 30% 98%, 28% 90%, 26% 100%, 24% 92%, 22% 98%, 20% 90%, 18% 100%, 16% 92%, 14% 98%, 12% 90%, 10% 100%, 8% 92%, 6% 98%, 4% 90%, 2% 100%, 0% 95%);
+}
+
+.washi-blue {
+  background-color: rgba(186, 218, 255, 0.7);
+}
+
+.washi-pink {
+  background-color: rgba(255, 204, 213, 0.7);
+}
+
+.washi-yellow {
+  background-color: rgba(254, 240, 138, 0.7);
+}
+
+.filter-torn {
+  filter: url('#torn-edge');
+}
+
+.torn-paper {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.02), 0 5px 15px rgba(0,0,0,0.08);
+  /* Use SVG filter in the DOM for true ripped effect */
 }
