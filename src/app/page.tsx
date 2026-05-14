@@ -94,7 +94,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen text-slate-800 relative">
+    <main className="min-h-screen text-slate-800 relative overflow-x-clip">
       <TornEdgeSVG />
 
       {/* Decorative Grid Lines - Parallax */}
@@ -193,7 +193,7 @@ export default function Home() {
                     animate={{ scale: 1, opacity: 1, y: char.y, rotateZ: char.r }}
                     transition={{ type: "spring", stiffness: 150, damping: 12, delay: i * 0.05 + 0.3 }}
                     whileHover={{ scale: 1.2, rotateZ: 0, zIndex: 50, y: 0 }}
-                    className={`inline-block ${char.col} text-white font-marker filter-torn text-6xl sm:text-7xl md:text-8xl lg:text-9xl px-4 py-2 md:px-6 md:py-4 -mx-1 md:-mx-4 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] cursor-pointer border-2 border-blue-300 pointer-events-auto`}
+                    className={`inline-block ${char.col} text-white font-marker filter-torn text-5xl sm:text-6xl md:text-8xl lg:text-9xl px-3 py-1 md:px-6 md:py-4 -mx-1 md:-mx-4 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] cursor-pointer border-2 border-blue-300 pointer-events-auto`}
                  >
                    {char.c}
                  </motion.div>
@@ -210,7 +210,7 @@ export default function Home() {
                     animate={{ scale: 1, opacity: 1, y: char.y, rotateZ: char.r }}
                     transition={{ type: "spring", stiffness: 100, damping: 10, delay: i * 0.1 + 0.8 }}
                     whileHover={{ scale: 1.1, rotateZ: 0, zIndex: 50 }}
-                    className="inline-block bg-yellow-400 text-slate-900 font-marker filter-torn text-[100px] sm:text-[150px] md:text-[200px] lg:text-[250px] px-4 py-2 -mx-4 md:-mx-8 shadow-[12px_12px_0px_rgba(0,0,0,0.4)] cursor-pointer border-4 border-yellow-200 pointer-events-auto leading-none"
+                    className="inline-block bg-yellow-400 text-slate-900 font-marker filter-torn text-[80px] sm:text-[120px] md:text-[200px] lg:text-[250px] px-3 py-1 -mx-3 md:-mx-8 shadow-[12px_12px_0px_rgba(0,0,0,0.4)] cursor-pointer border-4 border-yellow-200 pointer-events-auto leading-none"
                  >
                    {char.c}
                  </motion.div>
@@ -224,7 +224,7 @@ export default function Home() {
             >
               <div className="washi-tape top-[-20px] left-10 washi-yellow scale-150" />
               <div className="washi-tape top-[-20px] right-10 washi-blue scale-150" />
-              <span className="font-gochi text-3xl md:text-6xl font-bold">&quot;Future Leaders in Marketing &amp; Finance&quot;</span>
+              <span className="font-gochi text-2xl md:text-6xl font-bold">&quot;Future Leaders in Marketing &amp; Finance&quot;</span>
             </motion.div>
         </div>
         
@@ -380,7 +380,7 @@ export default function Home() {
                   className="absolute -bottom-16 bg-[#fdfbf7] filter-torn px-10 py-6 shadow-[8px_8px_20px_rgba(0,0,0,0.15)] z-20 w-[115%] max-w-[420px] text-center border-4 border-slate-300 transform rotate-2 cursor-pointer"
                 >
                   <div className="text-blue-600 font-bold text-base uppercase tracking-widest mb-2 font-sans border-b-4 border-dashed border-blue-200 pb-2">{officer.role}</div>
-                  <div className="text-slate-800 font-gochi text-5xl mt-4">{officer.name}</div>
+                  <div className="text-slate-800 font-gochi text-3xl md:text-5xl mt-4">{officer.name}</div>
                 </motion.div>
               </motion.div>
             ))}
