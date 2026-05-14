@@ -56,7 +56,7 @@ export default function Home() {
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
-  const fadeIn3D = {
+  const fadeIn3D: any = {
     hidden: { opacity: 0, y: 50, rotateX: -45, scale: 0.9 },
     visible: { 
       opacity: 1, 
@@ -136,7 +136,7 @@ export default function Home() {
             </div>
             
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.5, type: "spring" }} className="inline-block mt-4 mb-10 bg-pink-100 px-8 py-4 transform rotate-2 shadow-sm filter-torn border border-pink-200 hover:scale-110 transition-transform">
-              <span className="font-gochi text-5xl text-pink-700">"Future Leaders in Marketing & Finance"</span>
+              <span className="font-gochi text-5xl text-pink-700">&quot;Future Leaders in Marketing &amp; Finance&quot;</span>
             </motion.div>
             
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8 }} className="flex flex-col sm:flex-row gap-8 justify-center">
@@ -164,7 +164,7 @@ export default function Home() {
           >
              <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-yellow" />
              <img src="/gallery-2.jpg" className="w-full h-auto border-4 border-slate-100 filter-torn-light pointer-events-none" />
-             <p className="font-gochi text-center py-6 text-4xl text-slate-700">SCDC '26</p>
+             <p className="font-gochi text-center py-6 text-4xl text-slate-700">SCDC &apos;26</p>
           </motion.div>
         </motion.div>
       </section>
