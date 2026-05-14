@@ -68,7 +68,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen text-slate-800 overflow-x-hidden relative" style={{ perspective: "1200px" }}>
+    <main className="min-h-screen text-slate-800 overflow-x-hidden relative">
       <TornEdgeSVG />
 
       {/* Decorative Grid Lines - Parallax */}
@@ -104,7 +104,7 @@ export default function Home() {
       </motion.nav>
 
       {/* 1. HERO SECTION - 3D Scroll */}
-      <section ref={heroRef} className="relative pt-32 pb-20 px-4 flex flex-col items-center justify-center min-h-[90vh]" style={{ transformStyle: "preserve-3d" }}>
+      <section ref={heroRef} className="relative pt-32 pb-20 px-4 flex flex-col items-center justify-center min-h-[90vh]" style={{ perspective: "1200px", transformStyle: "preserve-3d" }}>
         
         {/* Floating background doodles */}
         <motion.div style={{ y: doodle1Y, rotateZ: doodle1Rotate }} className="absolute top-40 right-20 text-blue-300 opacity-60 font-gochi text-6xl select-none z-0">DECA = FUN!</motion.div>
@@ -123,13 +123,13 @@ export default function Home() {
               Chapter 2025-2026
             </motion.div>
             
-            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-4 perspective-[1000px]">
+            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-4" style={{ perspective: "1000px" }}>
                {["F","U","L","S","H","E","A","R"].map((char, i) => (
                  <CutoutLetter key={i} char={char} rot={Math.floor(Math.random()*8)-4} bg="bg-blue-600" textCol="text-white" delay={0.1 * i} />
                ))}
             </div>
 
-            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-10 perspective-[1000px]">
+            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-10" style={{ perspective: "1000px" }}>
                {["D","E","C","A"].map((char, i) => (
                  <CutoutLetter key={i} char={char} rot={Math.floor(Math.random()*8)-4} bg="bg-yellow-400" textCol="text-slate-900" delay={0.8 + (0.1 * i)} />
                ))}
@@ -198,7 +198,7 @@ export default function Home() {
             <p className="font-gochi text-5xl text-blue-600 mt-6 relative z-10">Over 50+ events to choose from!</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 perspective-[1000px]">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ perspective: "1000px" }}>
             {[
               { icon: Megaphone, title: "Marketing", color: "text-blue-600", bg: "bg-blue-100", border: "border-blue-400", desc: "Pitch creative campaigns and brand strategies." },
               { icon: DollarSign, title: "Finance", color: "text-emerald-600", bg: "bg-emerald-100", border: "border-emerald-400", desc: "Solve real-world business cases under pressure." },
@@ -245,7 +245,7 @@ export default function Home() {
             <h2 className="text-6xl md:text-8xl font-black font-marker text-slate-800 inline-block relative z-10 bg-white px-8 py-4 border-8 border-slate-800 shadow-[12px_12px_0px_#cbd5e1] rotate-1">OFFICER TEAM</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-32 perspective-[1200px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-32" style={{ perspective: "1200px" }}>
             {[
               { role: "President", name: "Aubrie Richter", img: "/officer-aubrie.jpg", rot: -3, tape: "washi-blue" },
               { role: "Competition VP", name: "Haley Zhang", img: "/officer-haley.jpg", rot: 3, tape: "washi-pink" },
@@ -297,7 +297,7 @@ export default function Home() {
             <h2 className="text-6xl md:text-8xl font-marker text-slate-800 mb-2 transform -rotate-1" style={{textShadow: "6px 6px 0px white"}}>Chapter Memories</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 perspective-[1500px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20" style={{ perspective: "1500px" }}>
             {[
               { src: "/gallery-1.jpg", desc: "HTX sign trip", rot: 3, tape: "washi-blue", yOffset: 0 },
               { src: "/gallery-2.jpg", desc: "SCDC 2026", rot: -2, tape: "washi-pink", yOffset: 30 },
@@ -331,7 +331,7 @@ export default function Home() {
       </section>
 
       {/* 5. JOIN CTA & FOOTER */}
-      <section id="join" className="py-40 relative overflow-hidden text-center bg-pink-100 border-b-8 border-slate-800 perspective-[1000px]">
+      <section id="join" className="py-40 relative overflow-hidden text-center bg-pink-100 border-b-8 border-slate-800" style={{ perspective: "1000px" }}>
         <motion.div 
           style={{ y: useTransform(scrollYProgress, [0.8, 1], ["0px", "-200px"]), rotateZ: 12 }}
           className="absolute top-20 right-20 text-pink-300 font-gochi text-7xl opacity-50 select-none z-0"
