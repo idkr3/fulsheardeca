@@ -94,7 +94,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen text-slate-800 overflow-x-hidden relative">
+    <main className="min-h-screen text-slate-800 relative">
       <TornEdgeSVG />
 
       {/* Decorative Grid Lines - Parallax */}
