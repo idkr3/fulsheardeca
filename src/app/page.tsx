@@ -103,87 +103,107 @@ export default function Home() {
         </div>
       </motion.nav>
 
-      {/* 1. HERO SECTION - 3D Scroll */}
-      <section ref={heroRef} className="relative pt-32 pb-20 px-4 flex flex-col items-center justify-center min-h-[90vh]" style={{ perspective: "1200px", transformStyle: "preserve-3d" }}>
+      {/* 1. HERO SECTION - INSANE SCRAPBOOK EXPLOSION */}
+      <section ref={heroRef} className="relative min-h-[120vh] w-full flex items-center justify-center overflow-hidden bg-slate-900" style={{ perspective: "1200px" }}>
+        {/* Dark Grid Background */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
         
-        {/* Floating background doodles */}
-        <motion.div style={{ y: doodle1Y, rotateZ: doodle1Rotate }} className="absolute top-40 right-20 text-blue-300 opacity-60 font-gochi text-6xl select-none z-0">DECA = FUN!</motion.div>
-        <motion.div style={{ y: doodle2Y, rotateZ: doodle2Rotate }} className="absolute bottom-40 left-10 text-pink-300 opacity-60 font-gochi text-5xl text-center select-none z-0">Business<br/>Leaders</motion.div>
-        
-        <motion.div 
-          style={{ y: heroY, rotateX: heroRotateX, opacity: heroOpacity, transformStyle: "preserve-3d" }}
-          className="relative max-w-5xl mx-auto w-full paper-card px-8 py-16 md:p-16 rotate-1 mt-10 bg-white z-10 shadow-[10px_10px_30px_rgba(0,0,0,0.1)] border-2 border-slate-200 bg-[linear-gradient(transparent_95%,#f1f5f9_95%)] bg-[length:100%_2rem]"
-        >
-          {/* Red margin line for notebook paper effect */}
-          <div className="absolute top-0 bottom-0 left-10 md:left-16 w-0.5 bg-red-300 opacity-60 z-0"></div>
-          
-          {/* Scribbled stars and arrows */}
-          <div className="absolute top-20 left-20 md:left-32 text-yellow-400 opacity-80 font-marker text-6xl -rotate-12 pointer-events-none z-0">*</div>
-          <div className="absolute top-40 right-20 md:right-32 text-blue-400 opacity-80 font-marker text-5xl rotate-12 pointer-events-none z-0">✧</div>
-          
-          <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-blue" />
-          <div className="washi-tape top-[-15px] right-10 rotate-[10deg] washi-yellow" />
-          <div className="washi-tape bottom-[-15px] left-10 -rotate-[15deg] washi-pink" />
-          
-          <div className="text-center relative z-10 mt-8">
-            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, type: "spring" }} className="inline-block mb-12 px-6 py-3 bg-yellow-200 text-slate-800 font-gochi text-3xl -rotate-3 shadow-md hover:rotate-2 transition-transform filter-torn border border-yellow-300 relative">
-              <span className="absolute -top-3 -left-3 text-red-500 text-4xl rotate-12">📌</span>
-              Chapter 2025-2026
-            </motion.div>
+        {/* Massive Background Doodles */}
+        <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, 800]), rotateZ: 15 }} className="absolute top-10 left-[-10vw] text-slate-700 opacity-50 font-marker text-[25vw] whitespace-nowrap pointer-events-none z-0">MARKETING</motion.div>
+        <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, -600]), rotateZ: -10 }} className="absolute bottom-20 right-[-5vw] text-slate-800 opacity-50 font-marker text-[20vw] whitespace-nowrap pointer-events-none z-0">FINANCE</motion.div>
+
+        {/* Floating Polaroids Background Layer */}
+        <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, -400]) }} className="absolute top-[10%] left-[5%] rotate-[-15deg] w-48 md:w-72 sticker bg-white p-3 shadow-2xl z-0 border-2 border-slate-200">
+           <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-pink" />
+           <img src="/gallery-1.jpg" className="w-full filter-torn-light" />
+        </motion.div>
+
+        <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, 500]) }} className="absolute bottom-[20%] left-[10%] rotate-[20deg] w-56 md:w-80 sticker bg-white p-3 shadow-2xl z-0 border-2 border-slate-200 hidden md:block">
+           <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-yellow" />
+           <img src="/gallery-3.jpg" className="w-full filter-torn-light" />
+        </motion.div>
+
+        <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, -300]) }} className="absolute top-[20%] right-[5%] rotate-[10deg] w-64 md:w-96 sticker bg-white p-3 shadow-2xl z-0 border-2 border-slate-200 hidden sm:block">
+           <div className="washi-tape top-[-15px] right-4 washi-blue" />
+           <div className="washi-tape bottom-[-15px] left-4 washi-pink" />
+           <img src="/gallery-4.jpg" className="w-full filter-torn-light" />
+        </motion.div>
+
+        <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, 600]) }} className="absolute top-[60%] right-[10%] rotate-[-25deg] w-48 md:w-72 sticker bg-white p-3 shadow-2xl z-0 border-2 border-slate-200 hidden lg:block">
+           <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-yellow" />
+           <img src="/gallery-5.jpg" className="w-full filter-torn-light" />
+        </motion.div>
+
+        {/* Central Exploding Typography */}
+        <div className="relative z-20 flex flex-col items-center justify-center w-full px-4 pointer-events-none mt-20 md:mt-0">
             
-            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-6 relative" style={{ perspective: "1000px" }}>
-               {/* Decorative underline */}
-               <svg className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 max-w-md h-8 text-blue-500 opacity-60 z-0" viewBox="0 0 400 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                 <path d="M 10 20 Q 100 40, 200 20 T 390 20" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeDasharray="5,5" />
-               </svg>
-               {["F","U","L","S","H","E","A","R"].map((char, i) => (
-                 <CutoutLetter key={i} char={char} rot={Math.floor(Math.random()*8)-4} bg="bg-blue-600" textCol="text-white" delay={0.1 * i} yOffset={Math.random() * 10 - 5} />
+            {/* Pinned Note */}
+            <motion.div initial={{ scale: 0, rotateZ: 45 }} animate={{ scale: 1, rotateZ: -12 }} transition={{ type: "spring", delay: 0.2 }} className="absolute top-[-80px] md:top-[-150px] left-[5%] md:left-[20%] bg-yellow-300 px-8 py-6 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] filter-torn border-2 border-yellow-400 z-30 pointer-events-auto hover:rotate-0 hover:scale-110 transition-transform">
+               <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-5xl">📌</span>
+               <span className="font-gochi text-4xl md:text-5xl text-slate-900 block text-center leading-none">Chapter<br/>2025-2026</span>
+            </motion.div>
+
+            {/* FULSHEAR overlapping tight */}
+            <div className="flex justify-center items-center flex-wrap md:flex-nowrap mb-2 relative z-20 w-full" style={{ perspective: "1000px" }}>
+               {[
+                 {c:"F", r:-15, y:20, col:"bg-blue-600"}, {c:"U", r:5, y:-10, col:"bg-blue-500"}, 
+                 {c:"L", r:-8, y:15, col:"bg-blue-600"}, {c:"S", r:20, y:-5, col:"bg-blue-500"}, 
+                 {c:"H", r:-12, y:25, col:"bg-blue-600"}, {c:"E", r:8, y:-15, col:"bg-blue-500"}, 
+                 {c:"A", r:-20, y:10, col:"bg-blue-600"}, {c:"R", r:15, y:-20, col:"bg-blue-500"}
+               ].map((char, i) => (
+                 <motion.div 
+                    key={i} initial={{ scale: 0, opacity: 0, y: 200, rotateZ: char.r * 3 }}
+                    animate={{ scale: 1, opacity: 1, y: char.y, rotateZ: char.r }}
+                    transition={{ type: "spring", stiffness: 150, damping: 12, delay: i * 0.05 + 0.3 }}
+                    whileHover={{ scale: 1.2, rotateZ: 0, zIndex: 50, y: 0 }}
+                    className={`inline-block ${char.col} text-white font-marker filter-torn text-6xl sm:text-7xl md:text-8xl lg:text-9xl px-4 py-2 md:px-6 md:py-4 -mx-1 md:-mx-4 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] cursor-pointer border-2 border-blue-300 pointer-events-auto`}
+                 >
+                   {char.c}
+                 </motion.div>
                ))}
             </div>
 
-            <div className="flex justify-center flex-wrap sm:flex-nowrap gap-1 mb-12 relative" style={{ perspective: "1000px" }}>
-               {["D","E","C","A"].map((char, i) => (
-                 <CutoutLetter key={i} char={char} rot={Math.floor(Math.random()*8)-4} bg="bg-yellow-400" textCol="text-slate-900" delay={0.8 + (0.1 * i)} yOffset={Math.random() * 10 - 5} />
+            {/* DECA Massive Overlap */}
+            <div className="flex justify-center items-center relative z-10 -mt-10 md:-mt-20" style={{ perspective: "1000px" }}>
+               {[
+                 {c:"D", r:10, y:0}, {c:"E", r:-15, y:30}, {c:"C", r:5, y:-10}, {c:"A", r:-8, y:20}
+               ].map((char, i) => (
+                 <motion.div 
+                    key={i} initial={{ scale: 0, opacity: 0, rotateZ: char.r * 2 }}
+                    animate={{ scale: 1, opacity: 1, y: char.y, rotateZ: char.r }}
+                    transition={{ type: "spring", stiffness: 100, damping: 10, delay: i * 0.1 + 0.8 }}
+                    whileHover={{ scale: 1.1, rotateZ: 0, zIndex: 50 }}
+                    className="inline-block bg-yellow-400 text-slate-900 font-marker filter-torn text-[100px] sm:text-[150px] md:text-[200px] lg:text-[250px] px-4 py-2 -mx-4 md:-mx-8 shadow-[12px_12px_0px_rgba(0,0,0,0.4)] cursor-pointer border-4 border-yellow-200 pointer-events-auto leading-none"
+                 >
+                   {char.c}
+                 </motion.div>
                ))}
-               {/* Arrow pointing to text */}
-               <svg className="absolute -right-8 -bottom-16 w-20 h-20 text-pink-500 hidden md:block" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                 <path d="M 5 5 Q 20 5, 20 15 M 15 10 L 20 15 L 15 20" />
-               </svg>
             </div>
             
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.5, type: "spring" }} className="inline-block relative z-20 mt-4 mb-14 bg-pink-100 px-8 py-5 transform rotate-2 shadow-sm filter-torn border border-pink-200 hover:scale-105 transition-transform">
-              <div className="washi-tape top-[-10px] left-4 scale-75 washi-blue" />
-              <span className="font-gochi text-4xl md:text-5xl text-pink-700 font-bold">&quot;Future Leaders in Marketing &amp; Finance&quot;</span>
+            {/* Floating Banner */}
+            <motion.div 
+              initial={{ x: "100vw", rotateZ: 20 }} animate={{ x: 0, rotateZ: -4 }} transition={{ type: "spring", damping: 15, delay: 1.5 }}
+              className="absolute bottom-[-100px] md:bottom-[-50px] right-[-5%] md:right-[5%] bg-pink-500 text-white px-10 md:px-20 py-4 md:py-6 filter-torn shadow-[15px_15px_0px_rgba(0,0,0,0.4)] z-40 pointer-events-auto hover:rotate-0 transition-transform"
+            >
+              <div className="washi-tape top-[-20px] left-10 washi-yellow scale-150" />
+              <div className="washi-tape top-[-20px] right-10 washi-blue scale-150" />
+              <span className="font-gochi text-3xl md:text-6xl font-bold">&quot;Future Leaders in Marketing &amp; Finance&quot;</span>
             </motion.div>
-            
-            <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8 }} className="flex flex-col sm:flex-row gap-6 justify-center mt-4">
-              <a href="#join" className="px-10 py-5 bg-deca-navy text-white font-marker text-2xl md:text-3xl shadow-[8px_8px_0px_#d4af37] hover:translate-y-1 hover:shadow-[3px_3px_0px_#d4af37] transition-all flex items-center justify-center gap-2 group transform -rotate-2 border-4 border-deca-navy relative">
-                Join DECA <ArrowRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href="#competitions" className="px-10 py-5 bg-white border-4 border-slate-800 text-slate-800 font-marker text-2xl md:text-3xl shadow-[8px_8px_0px_#cbd5e1] hover:translate-y-1 hover:shadow-[3px_3px_0px_#cbd5e1] transition-all flex items-center justify-center transform rotate-2 relative">
-                Explore Events!
-              </a>
-            </motion.div>
-          </div>
-          
-          {/* Parallax Polaroids on Hero */}
-          <motion.div 
-            style={{ y: useTransform(scrollYProgress, [0, 0.3], [0, -100]) }}
-            className="hidden xl:block absolute -right-32 top-20 rotate-6 sticker bg-white w-72 shadow-2xl hover:z-50 hover:scale-110 transition-transform z-0"
-          >
-             <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-pink" />
-             <img src="/gallery-1.jpg" className="w-full h-auto border-4 border-slate-100 filter-torn-light pointer-events-none" />
-             <p className="font-gochi text-center py-5 text-3xl text-slate-700">Astros Game!</p>
-          </motion.div>
-          <motion.div 
-            style={{ y: useTransform(scrollYProgress, [0, 0.3], [0, -80]) }}
-            className="hidden xl:block absolute -left-32 bottom-10 -rotate-6 sticker bg-white w-80 shadow-2xl hover:z-50 hover:scale-110 transition-transform z-0"
-          >
-             <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-yellow" />
-             <img src="/gallery-2.jpg" className="w-full h-auto border-4 border-slate-100 filter-torn-light pointer-events-none" />
-             <p className="font-gochi text-center py-5 text-3xl text-slate-700">SCDC &apos;26</p>
-          </motion.div>
-        </motion.div>
+        </div>
+        
+        {/* Massive Actions */}
+        <div className="absolute bottom-16 md:bottom-24 left-4 md:left-[10%] z-50 flex flex-col md:flex-row gap-8">
+            <motion.a 
+              initial={{ y: 200, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 2.0, type: "spring" }}
+              href="#join" className="group bg-white text-slate-900 font-marker text-3xl md:text-5xl px-8 md:px-12 py-4 md:py-6 filter-torn shadow-[10px_10px_0px_#d4af37] border-4 border-slate-900 transform rotate-3 hover:rotate-0 hover:scale-110 transition-all flex items-center gap-4"
+            >
+              <div className="washi-tape top-[-15px] left-1/2 -translate-x-1/2 washi-blue scale-125" />
+              JOIN NOW <ArrowRight className="w-8 h-8 md:w-10 md:h-10 group-hover:translate-x-2 transition-transform" />
+            </motion.a>
+        </div>
+
+        {/* Torn Edge Transition to next section */}
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-[#fdfbf7] filter-torn translate-y-1/2 z-50"></div>
       </section>
 
       {/* 2. COMPETITIONS SECTION - Scrapbook Upgrade */}
