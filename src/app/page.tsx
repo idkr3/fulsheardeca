@@ -39,6 +39,32 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const heroRef = useRef(null);
   
+  // Gallery 3D sequence refs and transforms
+  const galleryRef = useRef(null);
+  const { scrollYProgress: galleryProgress } = useScroll({
+    target: galleryRef,
+    offset: ["start start", "end end"]
+  });
+
+  const g1Scale = useTransform(galleryProgress, [0, 0.2, 0.4], [0.5, 1, 5]);
+  const g1Opacity = useTransform(galleryProgress, [0, 0.1, 0.3, 0.4], [0, 1, 1, 0]);
+  const g1Rotate = useTransform(galleryProgress, [0, 0.4], [-10, 10]);
+
+  const g2Scale = useTransform(galleryProgress, [0.15, 0.35, 0.6], [0.5, 1, 5]);
+  const g2Opacity = useTransform(galleryProgress, [0.15, 0.25, 0.45, 0.6], [0, 1, 1, 0]);
+  const g2Rotate = useTransform(galleryProgress, [0.15, 0.6], [15, -15]);
+
+  const g3Scale = useTransform(galleryProgress, [0.35, 0.55, 0.8], [0.5, 1, 5]);
+  const g3Opacity = useTransform(galleryProgress, [0.35, 0.45, 0.65, 0.8], [0, 1, 1, 0]);
+  const g3Rotate = useTransform(galleryProgress, [0.35, 0.8], [-20, 5]);
+
+  const g4Scale = useTransform(galleryProgress, [0.55, 0.75, 1], [0.5, 1, 5]);
+  const g4Opacity = useTransform(galleryProgress, [0.55, 0.65, 0.85, 1], [0, 1, 1, 0]);
+  const g4Rotate = useTransform(galleryProgress, [0.55, 1], [5, -20]);
+
+  const gTextScale = useTransform(galleryProgress, [0.8, 1], [0.5, 1]);
+  const gTextOpacity = useTransform(galleryProgress, [0.8, 0.9, 1], [0, 1, 1]);
+  
   // Parallax and 3D transforms
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const heroY = useTransform(scrollYProgress, [0, 0.3], ["0%", "15%"]);
@@ -328,53 +354,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. GALLERY SECTION - 3D Parallax */}
-      <section className="py-32 mt-10 bg-[#e8e4d9] border-y-8 border-slate-800 relative shadow-inner">
-        <motion.div 
-          style={{ y: useTransform(scrollYProgress, [0.6, 1], ["0px", "300px"]), rotateZ: -12 }}
-          className="absolute top-10 left-10 text-slate-500 font-gochi text-6xl opacity-40 select-none z-0"
-        >
-          Snapshots!
-        </motion.div>
-        
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 50, rotateX: 30 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true }}
-            className="text-center mb-32"
-          >
-            <h2 className="text-6xl md:text-8xl font-marker text-slate-800 mb-2 transform -rotate-1" style={{textShadow: "6px 6px 0px white"}}>Chapter Memories</h2>
+      {/* 4. GALLERY SECTION - 3D FLY-THROUGH SCROLL ANIMATION */}
+      <section ref={galleryRef} className="h-[400vh] relative bg-slate-900 border-y-8 border-slate-800 w-full mt-10 shadow-inner">
+        <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center" style={{ perspective: "2000px" }}>
+          
+          {/* Background grid zooming */}
+          <motion.div style={{ scale: useTransform(galleryProgress, [0, 1], [1, 3]), backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)', backgroundSize: '50px 50px' }} className="absolute inset-0 opacity-20 pointer-events-none"></motion.div>
+
+          <div className="absolute top-10 left-0 w-full text-center z-50">
+             <h2 className="text-4xl md:text-6xl font-marker text-white tracking-widest opacity-50 uppercase">Scroll to dive in ↓</h2>
+          </div>
+
+          {/* Intro Text */}
+          <motion.div style={{ opacity: useTransform(galleryProgress, [0, 0.1], [1, 0]), scale: useTransform(galleryProgress, [0, 0.1], [1, 5]) }} className="absolute z-10 text-center pointer-events-none">
+             <h2 className="text-6xl md:text-9xl font-black font-marker text-white transform -rotate-2" style={{textShadow: "6px 6px 0px #e11d48"}}>THE DECA<br/>EXPERIENCE</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20" style={{ perspective: "1500px" }}>
-            {[
-              { src: "/gallery-1.jpg", desc: "HTX sign trip", rot: 3, tape: "washi-blue", yOffset: 0 },
-              { src: "/gallery-2.jpg", desc: "SCDC 2026", rot: -2, tape: "washi-pink", yOffset: 30 },
-              { src: "/gallery-3.jpg", desc: "Astros game selfie", rot: 1, tape: "washi-yellow", yOffset: -20 },
-              { src: "/gallery-4.jpg", desc: "DECA Day at Daikin Park", rot: -4, tape: "washi-blue", yOffset: 40 },
-              { src: "/gallery-5.jpg", desc: "Texas DECA Medals!", rot: 4, tape: "washi-yellow", yOffset: -10 },
-              { src: "/gallery-6.jpg", desc: "Bus rides", rot: -1, tape: "washi-pink", yOffset: 20 },
-              { src: "/gallery-7.jpg", desc: "Advisor & Members", rot: 2, tape: "washi-blue", yOffset: -30 },
-              { src: "/gallery-8.jpg", desc: "Evening bus back", rot: -3, tape: "washi-yellow", yOffset: 10 },
-              { src: "/gallery-9.jpg", desc: "Districts staircase", rot: 1, tape: "washi-pink", yOffset: 0 }
-            ].map((item, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, scale: 0.5, rotateY: 45, y: 100 }} 
-                whileInView={{ opacity: 1, scale: 1, rotateY: 0, y: item.yOffset }} 
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ type: "spring", stiffness: 80, damping: 15, delay: (idx % 3) * 0.1 }}
-                whileHover={{ scale: 1.15, rotateZ: 0, rotateX: 5, rotateY: -5, zIndex: 50, y: item.yOffset - 20 }}
-                style={{ rotateZ: item.rot }}
-                className="sticker bg-white p-4 md:p-6 group relative shadow-[14px_14px_30px_rgba(0,0,0,0.15)] cursor-crosshair border-4 border-slate-300"
-              >
-                <div className={`washi-tape top-[-25px] left-1/2 -translate-x-1/2 scale-125 ${item.tape}`} />
-                <img src={item.src} className="w-full aspect-square object-cover border-4 border-slate-100 filter-torn-light pointer-events-none" />
-                <div className="p-6 text-center bg-yellow-50 mt-4 filter-torn border-2 border-yellow-200">
-                  <p className="font-gochi text-3xl text-slate-800">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* Polaroid 1 */}
+          <motion.div style={{ scale: g1Scale, opacity: g1Opacity, rotateZ: g1Rotate }} className="absolute z-20 w-[80vw] max-w-2xl sticker bg-white p-6 shadow-[20px_20px_50px_rgba(0,0,0,0.5)] border-4 border-slate-200 flex flex-col items-center">
+             <div className="washi-tape top-[-20px] left-1/2 -translate-x-1/2 scale-150 washi-blue" />
+             <img src="/gallery-1.jpg" className="w-full h-auto border-4 border-slate-100 filter-torn-light pointer-events-none" />
+             <p className="font-gochi text-center mt-6 text-5xl text-slate-800 bg-yellow-200 px-6 py-2 filter-torn transform -rotate-1">HTX Sign Trip!</p>
+          </motion.div>
+
+          {/* Polaroid 2 */}
+          <motion.div style={{ scale: g2Scale, opacity: g2Opacity, rotateZ: g2Rotate }} className="absolute z-30 w-[80vw] max-w-2xl sticker bg-white p-6 shadow-[20px_20px_50px_rgba(0,0,0,0.5)] border-4 border-slate-200 flex flex-col items-center">
+             <div className="washi-tape top-[-20px] left-10 scale-150 washi-pink" />
+             <div className="washi-tape bottom-[-20px] right-10 scale-150 washi-yellow" />
+             <img src="/gallery-2.jpg" className="w-full h-auto border-4 border-slate-100 filter-torn-light pointer-events-none" />
+             <p className="font-gochi text-center mt-6 text-5xl text-slate-800 bg-pink-200 px-6 py-2 filter-torn transform rotate-2">SCDC State Conference</p>
+          </motion.div>
+
+          {/* Polaroid 3 */}
+          <motion.div style={{ scale: g3Scale, opacity: g3Opacity, rotateZ: g3Rotate }} className="absolute z-40 w-[80vw] max-w-2xl sticker bg-white p-6 shadow-[20px_20px_50px_rgba(0,0,0,0.5)] border-4 border-slate-200 flex flex-col items-center">
+             <div className="washi-tape top-[-20px] right-1/2 scale-150 washi-yellow" />
+             <img src="/gallery-3.jpg" className="w-full h-auto border-4 border-slate-100 filter-torn-light pointer-events-none" />
+             <p className="font-gochi text-center mt-6 text-5xl text-slate-800 bg-blue-200 px-6 py-2 filter-torn transform -rotate-3">Astros Game Memories</p>
+          </motion.div>
+
+          {/* Polaroid 4 */}
+          <motion.div style={{ scale: g4Scale, opacity: g4Opacity, rotateZ: g4Rotate }} className="absolute z-50 w-[80vw] max-w-2xl sticker bg-white p-6 shadow-[20px_20px_50px_rgba(0,0,0,0.5)] border-4 border-slate-200 flex flex-col items-center">
+             <div className="washi-tape top-[-20px] left-1/4 scale-150 washi-blue" />
+             <img src="/gallery-5.jpg" className="w-full h-auto border-4 border-slate-100 filter-torn-light pointer-events-none" />
+             <p className="font-gochi text-center mt-6 text-5xl text-slate-800 bg-emerald-200 px-6 py-2 filter-torn transform rotate-1">Winning Medals!</p>
+          </motion.div>
+
+          {/* Outro Text */}
+          <motion.div style={{ scale: gTextScale, opacity: gTextOpacity }} className="absolute z-50 text-center bg-yellow-300 p-10 border-4 border-slate-900 shadow-[15px_15px_0px_#e11d48] filter-torn transform rotate-3">
+             <h2 className="text-5xl md:text-7xl font-marker text-slate-900 leading-tight">These could be<br/>YOUR memories.</h2>
+          </motion.div>
         </div>
       </section>
 
