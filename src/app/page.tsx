@@ -272,34 +272,68 @@ export default function Home() {
             <p className="font-gochi text-5xl text-blue-600 mt-6 relative z-10">Over 50+ events to choose from!</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ perspective: "1000px" }}>
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 mt-20 relative z-10" style={{ perspective: "1200px" }}>
             {[
-              { icon: Megaphone, title: "Marketing", color: "text-blue-600", bg: "bg-blue-100", border: "border-blue-400", desc: "Pitch creative campaigns and brand strategies." },
-              { icon: DollarSign, title: "Finance", color: "text-emerald-600", bg: "bg-emerald-100", border: "border-emerald-400", desc: "Solve real-world business cases under pressure." },
-              { icon: Lightbulb, title: "Entrepreneurship", color: "text-amber-600", bg: "bg-amber-100", border: "border-amber-400", desc: "Develop innovative startups and business plans." },
-              { icon: Utensils, title: "Hospitality", color: "text-orange-600", bg: "bg-orange-100", border: "border-orange-400", desc: "Manage hotels, execute events, and optimize tourism." },
-              { icon: Building, title: "Business Mgmt", color: "text-purple-600", bg: "bg-purple-100", border: "border-purple-400", desc: "Lead teams, solve HR challenges, and strategize." },
-              { icon: PieChart, title: "Financial Lit.", color: "text-pink-600", bg: "bg-pink-100", border: "border-pink-400", desc: "Master personal money management and wealth building." }
+              { 
+                icon: Megaphone, title: "Marketing", color: "text-blue-700", 
+                cardBg: "bg-yellow-100 bg-[linear-gradient(transparent_90%,#fcd34d_90%)] bg-[length:100%_2rem]", 
+                tape: "washi-blue", rot: -4, shape: "w-full md:w-[45%] lg:w-[30%] min-h-[350px]",
+                desc: "Pitch creative campaigns and brand strategies." 
+              },
+              { 
+                icon: DollarSign, title: "Finance", color: "text-emerald-800", 
+                cardBg: "bg-emerald-50 bg-[linear-gradient(to_right,#a7f3d0_2px,transparent_2px),linear-gradient(to_bottom,#a7f3d0_2px,transparent_2px)] bg-[size:30px_30px]", 
+                tape: "washi-pink", rot: 6, shape: "w-full md:w-[45%] lg:w-[35%] min-h-[380px] md:mt-20 lg:mt-32",
+                desc: "Solve real-world business cases under extreme pressure." 
+              },
+              { 
+                icon: Lightbulb, title: "Startups", color: "text-purple-700", 
+                cardBg: "bg-purple-100 border-4 border-dashed border-purple-300", 
+                tape: "washi-yellow", rot: -2, shape: "w-full md:w-[60%] lg:w-[25%] min-h-[300px]",
+                desc: "Develop innovative startups and business plans." 
+              },
+              { 
+                icon: Utensils, title: "Hospitality", color: "text-orange-700", 
+                cardBg: "bg-orange-100 border-x-8 border-orange-300", 
+                tape: "washi-blue", rot: 3, shape: "w-full md:w-[40%] lg:w-[35%] min-h-[320px] md:-mt-10 lg:-mt-20",
+                desc: "Manage hotels, execute massive events, and optimize tourism." 
+              },
+              { 
+                icon: Building, title: "Management", color: "text-rose-700", 
+                cardBg: "bg-rose-50 bg-[linear-gradient(transparent_90%,#fecdd3_90%)] bg-[length:100%_2.5rem]", 
+                tape: "washi-yellow", rot: -5, shape: "w-full md:w-[45%] lg:w-[30%] min-h-[350px] lg:mt-10",
+                desc: "Lead teams, solve HR challenges, and strategize." 
+              },
+              { 
+                icon: PieChart, title: "Financial Lit", color: "text-sky-700", 
+                cardBg: "bg-sky-100 border-[12px] border-double border-sky-300", 
+                tape: "washi-pink", rot: 4, shape: "w-full md:w-[50%] lg:w-[40%] min-h-[280px] lg:-mt-10",
+                desc: "Master personal money management and wealth building." 
+              }
             ].map((category, idx) => (
               <motion.div 
                 key={idx}
-                variants={fadeIn3D} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} transition={{ delay: idx * 0.15 }}
-                whileHover={{ scale: 1.05, rotateY: 5, rotateX: -5, zIndex: 50 }}
-                className={`relative bg-white p-8 shadow-[12px_12px_0px_rgba(0,0,0,0.15)] border-t-[10px] ${category.border} border-x-4 border-b-4 border-slate-200 transition-transform duration-300 filter-torn-light`}
+                variants={fadeIn3D} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} transition={{ delay: idx * 0.1 }}
+                whileHover={{ scale: 1.05, rotateY: 8, rotateX: -8, zIndex: 50 }}
+                style={{ rotateZ: category.rot }}
+                className={`relative p-8 md:p-10 shadow-[15px_15px_0px_rgba(0,0,0,0.15)] filter-torn-light flex flex-col justify-center items-center text-center cursor-pointer transition-transform duration-300 ${category.shape} ${category.cardBg}`}
               >
-                {/* Washi Tape */}
-                <div className={`washi-tape top-[-20px] left-1/2 -translate-x-1/2 scale-125 ${idx % 2 === 0 ? 'washi-pink' : 'washi-yellow'}`} />
+                <div className={`washi-tape top-[-20px] left-1/2 -translate-x-1/2 scale-125 ${category.tape}`} />
 
-                {/* Giant watermark icon */}
-                <category.icon className={`absolute -bottom-8 -right-8 w-56 h-56 ${category.color} opacity-10 transform -rotate-12 pointer-events-none z-0`} />
-
-                {/* Torn paper Icon Badge */}
-                <div className={`w-28 h-28 flex items-center justify-center ${category.bg} filter-torn border-4 border-dashed ${category.border} mb-8 transform -rotate-3 relative z-10`}>
-                  <category.icon className={`w-14 h-14 ${category.color} stroke-[2.5px]`} />
+                {/* Hand-drawn Icon Sticker */}
+                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-[6px_6px_0px_rgba(0,0,0,0.2)] border-4 border-slate-800 mb-8 transform -rotate-6 group-hover:rotate-12 transition-transform">
+                  <category.icon className={`w-12 h-12 ${category.color} stroke-[3px]`} />
                 </div>
 
-                <h3 className="text-4xl font-marker text-slate-800 mb-4 relative z-10">{category.title}</h3>
-                <p className="text-slate-700 font-gochi text-3xl leading-relaxed relative z-10">{category.desc}</p>
+                {/* Magazine Cutout Title */}
+                <h3 className="text-4xl md:text-5xl font-black font-marker text-white bg-slate-900 px-6 py-2 mb-6 transform rotate-2 shadow-[6px_6px_0px_#cbd5e1] inline-block tracking-wide">{category.title}</h3>
+                
+                <p className="text-slate-800 font-gochi text-3xl md:text-4xl leading-relaxed">{category.desc}</p>
+                
+                {/* Random scribbles/doodles on card */}
+                {idx % 2 === 0 && <div className="absolute bottom-4 right-4 text-5xl text-slate-400 opacity-40 font-marker rotate-[-20deg] pointer-events-none">#1</div>}
+                {idx % 3 === 0 && <div className="absolute top-4 left-4 text-4xl text-red-400 opacity-60 font-marker rotate-[15deg] pointer-events-none">✨</div>}
+                {idx === 1 && <div className="absolute bottom-6 left-6 text-6xl text-emerald-500 opacity-30 font-gochi rotate-[10deg] pointer-events-none">$</div>}
               </motion.div>
             ))}
           </div>
